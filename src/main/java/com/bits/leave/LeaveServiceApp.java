@@ -11,8 +11,8 @@ public class LeaveServiceApp {
 
     public static void main(String[] args) throws IOException {
         int port = 8080;
-        String env = System.getenv("APP_ENV");
-        if (env == null) env = "development";
+        String appEnvRaw = System.getenv("APP_ENV");
+        final String env = (appEnvRaw != null) ? appEnvRaw : "development";
 
         LeaveCalculator calculator = new LeaveCalculator();
 
