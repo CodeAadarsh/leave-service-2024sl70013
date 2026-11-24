@@ -57,7 +57,7 @@ pipeline {
                         -p 8085:8080 \
                         ${IMAGE_NAME}:${IMAGE_TAG}
                 """
-                sh 'sleep 3 && curl -f http://localhost:8085/health'
+                sh 'sleep 3 && curl -f http://host.docker.internal:8085/health || curl -f http://localhost:8085/health'
             }
         }
 
@@ -81,7 +81,7 @@ pipeline {
                         -p 8086:8080 \
                         ${IMAGE_NAME}:${IMAGE_TAG}
                 """
-                sh 'sleep 3 && curl -f http://localhost:8086/health'
+                sh 'sleep 3 && curl -f http://host.docker.internal:8086/health || curl -f http://localhost:8086/health'
                 sh 'docker ps --filter name=leave-'
             }
         }
